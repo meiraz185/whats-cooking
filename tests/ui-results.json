@@ -1,0 +1,272 @@
+[
+ {
+  "test": "All ingredients appear in the cabinet (42, no duplicates)",
+  "pass": true,
+  "detail": "42 shown"
+ },
+ {
+  "test": "Every cabinet category is filled (even counts \u2192 two full shelf rows, no gaps)",
+  "pass": true,
+  "detail": "[['veg', 14, 7], ['dairy', 10, 5], ['carb', 8, 4], ['sweet', 10, 5]]"
+ },
+ {
+  "test": "Layout order: cabinet \u2192 picks & board \u2192 pot & oven \u2192 serving plate at the very bottom",
+  "pass": true,
+  "detail": "[128, 340, 340, 480, 480, 725]"
+ },
+ {
+  "test": "Preparation area holds only the 4 slots, the board and the knife",
+  "pass": true,
+  "detail": ""
+ },
+ {
+  "test": "The cabinet is at the top of the kitchen",
+  "pass": true,
+  "detail": ""
+ },
+ {
+  "test": "The grater is completely gone (DOM, text, engine)",
+  "pass": true,
+  "detail": ""
+ },
+ {
+  "test": "Two cooking stations only: pot + oven",
+  "pass": true,
+  "detail": ""
+ },
+ {
+  "test": "Plate starts empty and inactive",
+  "pass": true,
+  "detail": ""
+ },
+ {
+  "test": "Picking animates: the ingredient flies to its slot, then settles",
+  "pass": true,
+  "detail": "flyer=1 settled=True"
+ },
+ {
+  "test": "Every ingredient can be selected and deselected by tapping it in the cabinet",
+  "pass": true,
+  "detail": "[]"
+ },
+ {
+  "test": "No more than four can be selected (5th refused, selection shown \"4/4 picked\")",
+  "pass": true,
+  "detail": "4 4/4 picked"
+ },
+ {
+  "test": "Replace: \u00d7 on a pick puts it back, then another can be chosen",
+  "pass": true,
+  "detail": ""
+ },
+ {
+  "test": "Cutting board works (tap \u00d73 \u2192 chopped tomato)",
+  "pass": true,
+  "detail": "chopped"
+ },
+ {
+  "test": "Only appropriate ingredients can be cut (pasta refused by the board)",
+  "pass": true,
+  "detail": "counter"
+ },
+ {
+  "test": "Cuttable list is logical",
+  "pass": true,
+  "detail": "['tomato', 'onion', 'mushroom', 'potato', 'carrot', 'zucchini', 'pepper', 'broccoli', 'garlic', 'eggplant', 'cucumber', 'chicken', 'strawberry', 'banana', 'apple', 'lemon', 'orange']"
+ },
+ {
+  "test": "Ingredients visually enter the chosen station (tomato drawn in the pot)",
+  "pass": true,
+  "detail": ""
+ },
+ {
+  "test": "Pot works: stove lights, flames + bubbles animate",
+  "pass": true,
+  "detail": "flames=9 bubbles=12"
+ },
+ {
+  "test": "Food visibly falls into the pot and gently simmers (bobbing) while cooking",
+  "pass": true,
+  "detail": "fall=True bob=2"
+ },
+ {
+  "test": "When ready, the pot offers a ladle and the plate lights up (no reveal yet)",
+  "pass": true,
+  "detail": ""
+ },
+ {
+  "test": "Serving: the dish travels from the pot to the plate, settles, THEN the reveal shows",
+  "pass": true,
+  "detail": "fly=1 plated=True"
+ },
+ {
+  "test": "Final dish reveal works (Shakshuka from tomato cooked first, then egg)",
+  "pass": true,
+  "detail": "shakshuka"
+ },
+ {
+  "test": "Oven door opens and closes on tap",
+  "pass": true,
+  "detail": ""
+ },
+ {
+  "test": "Oven works: tray reachable with door open, stirring makes batter, dial closes door and bakes, glow in window",
+  "pass": true,
+  "detail": "open=True mixed=True baking=True"
+ },
+ {
+  "test": "Opening the door pauses baking (genuinely interactive)",
+  "pass": true,
+  "detail": "2.7s \u2192 2.7s while open"
+ },
+ {
+  "test": "Oven must be opened to take the dish out (closed-door serve refused with a hint); oven light on",
+  "pass": true,
+  "detail": "Open the oven door to take the dish out."
+ },
+ {
+  "test": "Oven dish taken out \u2192 Chocolate Banana Cake",
+  "pass": true,
+  "detail": "Chocolate Banana Cake"
+ },
+ {
+  "test": "Different cooking methods produce different dishes & illustrations (5 real combos)",
+  "pass": true,
+  "detail": "egg+cheese+tomato+onion: pot \u2192 Cheesy Tomato & Egg Stew | oven \u2192 Baked Egg & Veg Casserole ; pasta+tomato+cheese+mushroom: pot \u2192 Cheesy Tomato Mushroom Pasta | oven \u2192 Baked Pasta Casserole ; flour+milk+chocolate+banana: pot \u2192 Chocolate Banana Pudding | oven \u2192 Chocolate Banana Cake ; potato+butter: pot \u2192 Rustic Potato & Butter Broth | oven \u2192 Baked Potato ; chicken+carrot+garlic: pot \u2192 Chicken Soup | oven \u2192 Roast Chicken"
+ },
+ {
+  "test": "Unusual combination still produces a named, drawn result",
+  "pass": true,
+  "detail": "Rustic Tofu & Sugar Stew"
+ },
+ {
+  "test": "\u2026and its picture/name change with method and ingredients",
+  "pass": true,
+  "detail": "Baked Apple"
+ },
+ {
+  "test": "Cooking time changes the result (soft vs hard-boiled egg)",
+  "pass": true,
+  "detail": "Soft-Boiled Egg / Hard-Boiled Egg"
+ },
+ {
+  "test": "Leaving it too long burns it (Charcoal Phoenix)",
+  "pass": true,
+  "detail": ""
+ },
+ {
+  "test": "Sound effects fire on select (+whoosh/settle), chop, drop, splash, stir, ignite, ready (audio running)",
+  "pass": true,
+  "detail": "running; ['chop', 'drop', 'ignite', 'pick', 'ready', 'settle', 'splash', 'stir', 'whoosh']"
+ },
+ {
+  "test": "Oven sounds: door open, door close, oven on, baking done",
+  "pass": true,
+  "detail": "['bakeDone', 'doorClose', 'doorOpen', 'ovenOn', 'pick', 'settle', 'tray', 'whoosh']"
+ },
+ {
+  "test": "All earlier (V1 + V2) sound effects are still present",
+  "pass": true,
+  "detail": ""
+ },
+ {
+  "test": "Mute button works (master gain \u2192 0, back on \u2192 restored)",
+  "pass": true,
+  "detail": "0.000 / 0.55"
+ },
+ {
+  "test": "Serving + reveal sounds play (serve, settle, reveal)",
+  "pass": true,
+  "detail": "['ignite', 'pick', 'ready', 'reveal', 'serve', 'settle', 'splash', 'whoosh']"
+ },
+ {
+  "test": "Restart (clean up) works (kitchen with food in an open oven \u2192 empty, door shut)",
+  "pass": true,
+  "detail": ""
+ },
+ {
+  "test": "Choosing the pot locks out the oven for that dish",
+  "pass": true,
+  "detail": ""
+ },
+ {
+  "test": "Undo takes the last ingredient back out",
+  "pass": true,
+  "detail": ""
+ },
+ {
+  "test": "Recipe book records discoveries incl. improvisations",
+  "pass": true,
+  "detail": "17"
+ },
+ {
+  "test": "Six more complete sessions (cabinet \u2192 board \u2192 pot/oven \u2192 plate \u2192 reveal) give the right dishes",
+  "pass": true,
+  "detail": "['Ratatouille', 'Chicken Quesadilla', 'Peanut Noodles', 'Apple Crumble', 'Blueberry Porridge', 'Blueberry Muffins']"
+ },
+ {
+  "test": "Desktop: no page errors",
+  "pass": true,
+  "detail": "[]"
+ },
+ {
+  "test": "Mobile: no horizontal overflow, no page scroll",
+  "pass": true,
+  "detail": "x=0 y=0"
+ },
+ {
+  "test": "Mobile: cabinet items and stations are touch-sized (items \u2265 60px, stations \u2265 80px)",
+  "pass": true,
+  "detail": "item [61, 84], stations [144, 110, 180, 188]"
+ },
+ {
+  "test": "Mobile: cabinet browses by compact horizontal scroll + category tabs",
+  "pass": true,
+  "detail": "scrollWidth [1390, 348], after tab 1042"
+ },
+ {
+  "test": "Mobile: tap selects up to exactly four; tapping again deselects",
+  "pass": true,
+  "detail": "4 then 3"
+ },
+ {
+  "test": "Mobile: cutting on a touchscreen (swipe) works",
+  "pass": true,
+  "detail": "sliced"
+ },
+ {
+  "test": "Mobile: tap-to-place into the pot + circular touch stirring",
+  "pass": true,
+  "detail": "in pot 4, mixed True"
+ },
+ {
+  "test": "Mobile: ladle tapped then plate tapped \u2192 reveal (Chocolate Banana Pudding)",
+  "pass": true,
+  "detail": "Chocolate Banana Pudding"
+ },
+ {
+  "test": "Mobile: result card fits the screen",
+  "pass": true,
+  "detail": ""
+ },
+ {
+  "test": "Mobile: oven door by touch, drag from the cabinet, bake, open, drag the tray to the plate \u2192 Pizza",
+  "pass": true,
+  "detail": "open=True tray=3 closed=True \u2192 pizza"
+ },
+ {
+  "test": "Phone landscape: no horizontal overflow",
+  "pass": true,
+  "detail": ""
+ },
+ {
+  "test": "Mobile: no page errors",
+  "pass": true,
+  "detail": "[]"
+ },
+ {
+  "test": "All 111 authored outcomes reproduced in the browser engine and drawn",
+  "pass": true,
+  "detail": "[]"
+ }
+]

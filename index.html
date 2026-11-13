@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no">
+  <meta name="theme-color" content="#fbf1dc">
+  <title>What's Cooking? V2.1 — Mix it. Cook it. See what happens.</title>
+  <meta name="description" content="An interactive cooking experiment about choices and consequences.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,700;9..144,900&family=Nunito:wght@600;800;900&display=swap" rel="stylesheet">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22%3E%3Cellipse cx=%2250%22 cy=%2258%22 rx=%2240%22 ry=%2228%22 fill=%22%23fffaf0%22 stroke=%22%233a2318%22 stroke-width=%226%22/%3E%3Ccircle cx=%2250%22 cy=%2256%22 r=%2214%22 fill=%22%23f7a823%22 stroke=%22%233a2318%22 stroke-width=%225%22/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div id="app">
+    <header class="topbar">
+      <div class="brand">
+        <h1>What’s Cooking?</h1>
+        <p class="tagline">Mix it. Cook it. See what happens.</p>
+      </div>
+      <nav class="tools-bar" aria-label="Kitchen tools">
+        <button id="btn-undo" class="hang" aria-label="Undo last action" title="Undo">
+          <svg viewBox="0 0 48 48" aria-hidden="true"><path d="M18 14 L8 22 L18 30" fill="none" stroke="currentColor" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M9 22 H28 a10 10 0 0 1 0 20 H22" fill="none" stroke="currentColor" stroke-width="4.5" stroke-linecap="round"/></svg>
+          <span>undo</span>
+        </button>
+        <button id="btn-restart" class="hang" aria-label="Clean up and restart" title="Clean up">
+          <svg viewBox="0 0 48 48" aria-hidden="true"><rect x="8" y="18" width="32" height="20" rx="6" fill="#f6cf5a" stroke="#3a2318" stroke-width="3"/><rect x="8" y="12" width="32" height="9" rx="4" fill="#9db58a" stroke="#3a2318" stroke-width="3"/><circle cx="18" cy="9" r="3" fill="#fff" stroke="#3a2318" stroke-width="2"/><circle cx="28" cy="6" r="2.2" fill="#fff" stroke="#3a2318" stroke-width="2"/></svg>
+          <span>clean up</span>
+        </button>
+        <button id="btn-sound" class="hang" aria-label="Sound on" aria-pressed="true" title="Sound">
+          <svg viewBox="0 0 48 48" aria-hidden="true"><rect x="6" y="14" width="36" height="26" rx="6" fill="#6cc3bf" stroke="#3a2318" stroke-width="3"/><circle cx="17" cy="27" r="7" fill="#fffaf0" stroke="#3a2318" stroke-width="3"/><rect x="28" y="21" width="9" height="3" rx="1.5" fill="#3a2318"/><rect x="28" y="28" width="9" height="3" rx="1.5" fill="#3a2318"/><path d="M14 14 L30 4" stroke="#3a2318" stroke-width="3" stroke-linecap="round"/><path class="mute-x" d="M4 6 L44 44" stroke="#ef6a50" stroke-width="5" stroke-linecap="round"/></svg>
+          <span>sound</span>
+        </button>
+        <button id="btn-book" class="hang book" aria-label="Open the recipe book" title="Recipe book">
+          <svg viewBox="0 0 48 48" aria-hidden="true"><path d="M8 8 h26 a6 6 0 0 1 6 6 v28 h-26 a6 6 0 0 1 -6 -6Z" fill="#ef6a50" stroke="#3a2318" stroke-width="3"/><path d="M14 42 a6 6 0 0 1 0 -12 h26" fill="#fffaf0" stroke="#3a2318" stroke-width="3"/><path d="M16 16 h16 M16 22 h12" stroke="#fffaf0" stroke-width="3" stroke-linecap="round"/></svg>
+          <span>book <b id="book-count">0</b></span>
+        </button>
+      </nav>
+    </header>
+
+    <main id="kitchen" aria-label="Kitchen">
+      <div class="deco deco-counter" aria-hidden="true"></div>
+      <div class="deco deco-stove" aria-hidden="true"></div>
+      <div class="deco deco-serve" aria-hidden="true"></div>
+      <div class="deco flow flow-1" aria-hidden="true"></div>
+      <div class="deco flow flow-2" aria-hidden="true"></div>
+      <div class="deco flow flow-3" aria-hidden="true"></div>
+
+      <section id="st-cabinet" class="cabinet" data-drop="pantry" aria-label="Ingredient cabinet — tap to pick or put back, up to four"><div class="art"></div></section>
+
+      <section id="st-counter" class="station counter" data-drop="counter" aria-label="Your picks (up to 4)"><div class="art"></div></section>
+      <section id="st-board" class="station" data-drop="board" aria-label="Cutting board — tap or swipe to chop"><div class="art"></div></section>
+
+      <section id="st-pot" class="station vessel" data-drop="pot" data-stir="pot" aria-label="Pot on the stove — stir in circles, turn the knob to cook"><div class="art"></div></section>
+      <section id="st-oven" class="station vessel" data-drop="oven" data-stir="oven" aria-label="Oven — tap the door to open or close, turn the dial to bake"><div class="art"></div></section>
+
+      <section id="st-serve" class="station serve" data-drop="serve" aria-label="Serving area — move the cooked food onto the plate"><div class="art"></div></section>
+
+      <div id="hint" class="hint" aria-live="polite">Pick something. Make something.</div>
+      <div id="note" class="recipe-note" hidden></div>
+    </main>
+
+    <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+    <section id="result" class="overlay" hidden aria-modal="true" role="dialog" aria-labelledby="res-name">
+      <div class="result-card">
+        <div class="res-badge" id="res-badge"></div>
+        <div class="res-stage" id="res-stage"></div>
+        <h2 id="res-name"></h2>
+        <p class="res-desc" id="res-desc"></p>
+        <p class="res-why" id="res-why"></p>
+        <div class="res-facts" id="res-facts"></div>
+        <div class="res-actions">
+          <button id="res-save" class="btn">Save discovery</button>
+          <button id="res-again" class="btn primary">Cook again</button>
+          <button id="res-recreate" class="btn">Recreate recipe</button>
+        </div>
+      </div>
+    </section>
+
+    <section id="book" class="overlay" hidden aria-modal="true" role="dialog" aria-labelledby="book-title">
+      <div class="book-card">
+        <header class="book-head">
+          <h2 id="book-title">Recipe Book</h2>
+          <p id="book-progress"></p>
+          <button class="close" id="book-close" aria-label="Close the book">×</button>
+        </header>
+        <div class="book-body" id="book-body"></div>
+      </div>
+    </section>
+  </div>
+
+  <div id="ghost" class="ghost" aria-hidden="true"></div>
+
+  <script src="js/core/util.js"></script>
+  <script src="js/data/ingredients.js"></script>
+  <script src="js/data/methods.js"></script>
+  <script src="js/data/recipes.js"></script>
+  <script src="js/engine/engine.js"></script>
+  <script src="js/engine/state.js"></script>
+  <script src="js/services/storage.js"></script>
+  <script src="js/services/audio.js"></script>
+  <script src="js/ui/ingredient-art.js"></script>
+  <script src="js/ui/dish-art.js"></script>
+  <script src="js/ui/render.js"></script>
+  <script src="js/ui/fx.js"></script>
+  <script src="js/ui/book.js"></script>
+  <script src="js/ui/result.js"></script>
+  <script src="js/ui/input.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

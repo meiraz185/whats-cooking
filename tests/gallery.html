@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8"><title>What's Cooking? — dish gallery (dev)</title>
+<link rel="stylesheet" href="../css/style.css">
+<style>body{overflow:auto;padding:16px} .g{display:grid;grid-template-columns:repeat(8,1fr);gap:8px} .c{border:2px solid #3a2318;border-radius:14px;background:#fffaf0;padding:4px;text-align:center;font:800 11px sans-serif} .c svg{width:100%;height:auto} .bad{background:#ffd9d1}</style></head>
+<body><h2 style="font-family:Georgia">Dish gallery — every authored outcome reproduced by its script</h2><div class="g" id="g"></div>
+<script src="../js/core/util.js"></script><script src="../js/data/ingredients.js"></script><script src="../js/data/methods.js"></script>
+<script src="../js/data/recipes.js"></script><script src="../js/engine/engine.js"></script><script src="../js/engine/state.js"></script>
+<script src="../js/ui/ingredient-art.js"></script><script src="../js/ui/dish-art.js"></script><script src="solutions.js"></script>
+<script>
+const out=[]; let html='';
+for (const id of Object.keys(WC.OUTCOMES)) {
+  const r = WC_TEST.run(WC, WC_TEST.SOL[id]);
+  const f = WC.State.st.served && WC.State.st.served.facts;
+  const ok = r.outcome === id;
+  out.push({id, got:r.outcome, ok});
+  html += `<div class="c ${ok?'':'bad'}" data-id="${id}">${f?WC.dishSVG(r.outcome,f,'still'):''}<div>${WC.OUTCOMES[id].name}</div></div>`;
+}
+document.getElementById('g').innerHTML = html;
+window.GALLERY = out;
+</script></body></html>
